@@ -3,7 +3,6 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
 def build_fuzzy_system():
-    # تعریف متغیرهای ورودی
     trust = ctrl.Antecedent(np.arange(0, 11, 1), 'trust')
     kindness = ctrl.Antecedent(np.arange(0, 11, 1), 'kindness')
     emotional = ctrl.Antecedent(np.arange(0, 11, 1), 'emotional_stability')
@@ -15,7 +14,6 @@ def build_fuzzy_system():
 
     decision = ctrl.Consequent(np.arange(0, 101, 1), 'decision')
 
-    # تابع عضویت استاندارد
     for var in [trust, kindness, emotional, financial, attention, effort, attraction, princess]:
         var['low'] = fuzz.trimf(var.universe, [0, 0, 5])
         var['medium'] = fuzz.trimf(var.universe, [2, 5, 8])
@@ -25,7 +23,6 @@ def build_fuzzy_system():
     decision['maybe'] = fuzz.trimf(decision.universe, [30, 50, 70])
     decision['keep'] = fuzz.trimf(decision.universe, [0, 0, 40])
 
-    # --- قوانین هوشمند فازی --- #
     rules = [
         # 💔 Dump
         ctrl.Rule(trust['low'] & emotional['low'] & effort['low'], decision['dump']),
