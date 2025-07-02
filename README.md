@@ -23,7 +23,7 @@ Server runs on http://localhost:5000
 
 Step 2: Start Frontend
 bash
-cd ../frontend
+cd ../dating-ui
 npm start
 Automatically opens http://localhost:3000
 
